@@ -61,7 +61,21 @@ class TTSAdapter:
   ```
 - 0바이트 또는 1초 미만 wav는 실패로 간주하고 다음 엔진으로 폴백.
 
-## 유료 API (옵션)
+## 유료 API (옵션, opt-in)
 
-- OpenAI/ElevenLabs/Google는 `tts/cloud_example.py` 스텁으로만 제공하고 기본 비활성화.
+### Typecast (구현됨, `tts/typecast.py`)
+
+- REST (`POST https://api.typecast.ai/v1/text-to-speech`, `X-API-KEY`), 600+ 보이스, 감정 자동.
+- 요금 (2026-10 확인): Free 월 15k자(1크레딧=1자, 동시 2, 비상업+출처표시) / Lite $15 월 200k자.
+- 유효화:
+  ```powershell
+  $env:TYPECAST_API_KEY="<키>"
+  # config.json: tts.primary="typecast", tts.typecast.voice_id="<voice_id>"
+  ```
+- 주의: 무료 15k자는 약 35분 분량. 대량 테스트는 edge로, 본 변환만 typecast로.
+- 키는 절대 커밋 금지: 환경변수 `TYPECAST_API_KEY`만 사용 (`.env.example` 참조).
+
+### 기타 (OpenAI/ElevenLabs/Google)
+
+- `tts/cloud_example.py` 스텁으로만 제공하고 기본 비활성화.
 - 키는 절대 커밋 금지: `os.environ["TTS_API_KEY"]` + `.env.example`만 제공.

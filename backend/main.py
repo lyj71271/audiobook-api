@@ -18,6 +18,7 @@ from core.chunk import chunk_text
 from core.manifest import build_manifest, load_manifest, pending
 from tts.edge import EdgeTTSAdapter
 from tts.piper import PiperTTSAdapter
+from tts.typecast import TypecastAdapter
 from tts.fallback import synth_with_fallback
 from audio.concat import PRESET_BITRATE, concat_wavs, to_mp3
 
@@ -111,13 +112,21 @@ def _dl(path: str, filename: str) -> FileResponse:
 
 def _engines(voice: str = ""):
     t = CFG["tts"]
-    return [
+    tc = t.get("typecast", {})
+    engines = [
         EdgeTTSAdapter(voice=voice or t["edge_voice"], rate=t["edge_rate"],
                        pitch=t["edge_pitch"],
                        interval_ms=t["request_interval_ms"],
                        retry_max=t["retry_max"]),
         PiperTTSAdapter(model_path=t["piper_model"]),
     ]
+    # typecast는 opt-in: 키+voice_id가 있고 primary 지정 시에만 1순위.
+    # 기본값(edge 우선)은 그대로라 기존 동작 불변.
+    if t.get("primary") == "typecast":
+        engines.insert(0, TypecastAdapter(
+            voice_id=tc.get("voice_id", ""), model=tc.get("model", "ssfm-v30"),
+            emotion=tc.get("emotion", "smart")))
+    return engines
 
 
 @app.get("/health")
