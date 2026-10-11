@@ -17,6 +17,7 @@ from core.clean import clean_for_tts
 from core.chunk import chunk_text
 from core.manifest import build_manifest, load_manifest, pending
 from tts.edge import EdgeTTSAdapter
+from tts.gemini import GeminiAdapter
 from tts.piper import PiperTTSAdapter
 from tts.typecast import TypecastAdapter
 from tts.fallback import synth_with_fallback
@@ -120,12 +121,17 @@ def _engines(voice: str = ""):
                        retry_max=t["retry_max"]),
         PiperTTSAdapter(model_path=t["piper_model"]),
     ]
-    # typecast는 opt-in: 키+voice_id가 있고 primary 지정 시에만 1순위.
+    # 유료/외부는 opt-in: 키+primary 지정 시에만 1순위.
     # 기본값(edge 우선)은 그대로라 기존 동작 불변.
     if t.get("primary") == "typecast":
         engines.insert(0, TypecastAdapter(
             voice_id=tc.get("voice_id", ""), model=tc.get("model", "ssfm-v30"),
             emotion=tc.get("emotion", "smart")))
+    if t.get("primary") == "gemini":
+        gm = t.get("gemini", {})
+        engines.insert(0, GeminiAdapter(
+            model=gm.get("model", "gemini-2.5-flash-preview-tts"),
+            voice=gm.get("voice", "Kore"), style=gm.get("style", "")))
     return engines
 
 

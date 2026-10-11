@@ -14,6 +14,11 @@
       "voice_id": "",
       "model": "ssfm-v30",
       "emotion": "smart"
+    },
+    "gemini": {
+      "model": "gemini-2.5-flash-preview-tts",
+      "voice": "Kore",
+      "style": ""
     }
   },
   "chunk": {

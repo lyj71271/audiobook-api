@@ -63,6 +63,20 @@ class TTSAdapter:
 
 ## 유료 API (옵션, opt-in)
 
+## 무료 고음질 (opt-in)
+
+### Gemini TTS (`tts/gemini.py`)
+
+- REST (`POST generativelanguage.googleapis.com`, `x-goog-api-key`), 한국어 자동 감지, 스타일 지정.
+- 무료: AI Studio 키만 있으면 사용 (횟수 제한, 카드 불필요).
+- 유효화:
+  ```powershell
+  $env:GEMINI_API_KEY="<키>"
+  # config.json: tts.primary="gemini"
+  # (모델/보이스: tts.gemini.model/voice, 기본 gemini-2.5-flash-preview-tts/Kore)
+  ```
+- 응답 PCM을 wav로 저장 (표준 라이브러리만 사용, 추가 의존 없음).
+
 ### Typecast (구현됨, `tts/typecast.py`)
 
 - REST (`POST https://api.typecast.ai/v1/text-to-speech`, `X-API-KEY`), 600+ 보이스, 감정 자동.
