@@ -1,12 +1,16 @@
 # 결과물·빌드 산출물 제외 (용량 + 재생성 가능)
 out/
 app/build/
+app/android/build/
 app/.dart_tool/
-.dart_tool/
 __pycache__/
 *.pyc
 .env
 flutter.zip
 cmdtools.zip
+_concat.txt
+_t_*.txt
+repro_*.py
+center_emu.py
 .vscode/
 .idea/
