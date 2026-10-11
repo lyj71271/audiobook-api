@@ -1,0 +1,14 @@
+edge-tts>=1.0.0
+pypdf>=3.0.0
+ebooklib>=0.18
+beautifulsoup4>=4.12.0
+python-docx>=0.8.11
+pydub>=0.25.0
+mutagen>=1.46.0
+fastapi>=0.95.0
+uvicorn>=0.22.0
+python-multipart>=0.0.6
+pytest>=7.0.0
+charset-normalizer>=3.0.0
+# piper-tts는 Python 3.9+에서만 설치 가능 — 3.8 환경에서는 별도 설치:
+# pip install piper-tts (Python 3.10+ 권장)

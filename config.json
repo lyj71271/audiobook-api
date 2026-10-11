@@ -1,0 +1,29 @@
+{
+  "language": "ko",
+    "tts": {
+    "primary": "edge",
+    "fallback": "piper",
+    "edge_voice": "ko-KR-SunHiNeural",
+    "edge_rate": "+0%",
+    "edge_pitch": "+0Hz",
+    "piper_model": "assets/voices/ko_KR-xxx-medium.onnx",
+    "retry_max": 3,
+    "request_interval_ms": 200,
+    "max_concurrency": 4
+  },
+  "chunk": {
+    "target_chars": 400,
+    "hard_max": 600
+  },
+  "audio": {
+    "codec": "libmp3lame",
+    "bitrate": "96k",
+    "quality": "standard",
+    "silence_paragraph_ms": 300,
+    "silence_chapter_ms": 800,
+    "format": "mp3"
+  },
+  "server": {
+    "port": 8002
+  }
+}

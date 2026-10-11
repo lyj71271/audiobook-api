@@ -1,0 +1,11 @@
+services:
+  # 오디오북 TTS 백엔드 (무료 플랜)
+  - type: web
+    name: audiobook-api
+    runtime: docker
+    dockerfilePath: ./deploy/Dockerfile
+    plan: free
+    healthCheckPath: /health
+    envVars:
+      - key: ALLOWED_ORIGINS
+        value: "*"

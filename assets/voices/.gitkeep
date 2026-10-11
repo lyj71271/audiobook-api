@@ -1,0 +1,2 @@
+# piper 오프라인 모델(.onnx + .onnx.json)을 여기에 배치
+# 예: python -m piper.download_voices ko_KR --download-dir assets/voices

@@ -1,0 +1,7 @@
+out/
+app/
+.opencode/
+__pycache__/
+*.pyc
+.env
+.git/
