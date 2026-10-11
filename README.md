@@ -1,6 +1,8 @@
 # 오디오북 — 텍스트→오디오 변환 (Flutter + Python)
 
-스킬: `.opencode/skills/text-to-audio/SKILL.md` 준수.
+> 처음 오셨나요? **`GUIDE.md`(왕초보 가이드)**부터 읽으세요.
+> 스킬: `text-to-audio`(변환 원리) · `mobile-deploy`(실기기) · `web-deploy`(클라우드) · `audiobook-ops`(운영).
+
 스택: Python 코어 + edge-tts/piper + ffmpeg + FastAPI + Flutter.
 
 ## 현재 환경 체크 결과 (2026-10-09)
